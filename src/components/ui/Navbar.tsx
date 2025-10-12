@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "./button";
 import { Home, Sprout } from "lucide-react";
+import { ModeToggle } from "../ModeToggle";
 
 const Navbar = () => {
   return (
@@ -32,6 +33,8 @@ const Navbar = () => {
                 <span className="hidden lg:inline">Home</span>
               </Link>
             </Button>
+            {/* {theme mode} */}
+            <ModeToggle />
           </div>
         </div>
       </div>
