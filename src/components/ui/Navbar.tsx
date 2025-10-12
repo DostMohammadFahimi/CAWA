@@ -1,9 +1,16 @@
+import { stackServerApp } from "@/stack/server";
+import { Home, LogIn, LogOut, Sprout } from "lucide-react";
 import Link from "next/link";
-import { Button } from "./button";
-import { Home, Sprout } from "lucide-react";
 import { ModeToggle } from "../ModeToggle";
+import { Button } from "./button";
+import { getUserDetails } from "@/actions/user.actions";
+import { UserButton } from "@stackframe/stack";
 
-const Navbar = () => {
+async function Navbar() {
+  const user = await stackServerApp.getUser();
+  const app = stackServerApp.urls;
+  const userProfile = await getUserDetails(user?.id);
+
   return (
     <nav className="sticky top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
       <div className="max-w-7xl mx-auto px-4">
@@ -17,7 +24,9 @@ const Navbar = () => {
               🌱 Plantventory
             </Link>
           </div>
+
           {/* {Navbar component} */}
+
           <div className="hidden md:flex items-center space-x-4">
             <Button variant="ghost" className="flex items-center gap-2" asChild>
               <Link href="/plants">
@@ -33,13 +42,45 @@ const Navbar = () => {
                 <span className="hidden lg:inline">Home</span>
               </Link>
             </Button>
+
             {/* {theme mode} */}
             <ModeToggle />
+
+            {user ? (
+              <>
+                {/* {Sign Out section} */}
+                <Button
+                  variant="ghost"
+                  className="flex items-center gap-2"
+                  asChild
+                >
+                  <Link href={app.signOut}>
+                    <LogOut className="w-4 h-4" />
+                    <span className="hidden lg:inline">Sign Out</span>
+                  </Link>
+                </Button>
+                <UserButton />
+              </>
+            ) : (
+              <>
+                {/* {Sign In and Sign up section} */}
+                <Button
+                  variant="ghost"
+                  className="flex items-center gap-2"
+                  asChild
+                >
+                  <Link href={app.signIn}>
+                    <LogIn className="w-4 h-4" />
+                    <span className="hidden lg:inline">Sign In</span>
+                  </Link>
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </div>
     </nav>
   );
-};
+}
 
 export default Navbar;

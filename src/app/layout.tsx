@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { StackProvider, StackTheme } from "@stackframe/stack";
+import { stackClientApp } from "../stack/client";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
@@ -28,7 +30,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      ><StackProvider app={stackClientApp}><StackTheme>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -40,7 +42,7 @@ export default function RootLayout({
           {children}
         </ThemeProvider>{" "}
         <h1>Footer</h1>
-      </body>
+      </StackTheme></StackProvider></body>
     </html>
   );
 }
