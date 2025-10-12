@@ -41,7 +41,6 @@ export default function RootLayout({
 
           {children}
         </ThemeProvider>{" "}
-        <h1>Footer</h1>
       </StackTheme></StackProvider></body>
     </html>
   );

@@ -1,7 +1,7 @@
 import { stackServerApp } from "@/stack/server";
 import { Home, LogIn, LogOut, Sprout } from "lucide-react";
 import Link from "next/link";
-import { ModeToggle } from "../ModeToggle";
+import { ModeToggle } from "./ModeToggle";
 import { Button } from "./button";
 import { getUserDetails } from "@/actions/user.actions";
 import { UserButton } from "@stackframe/stack";
@@ -9,7 +9,6 @@ import { UserButton } from "@stackframe/stack";
 async function Navbar() {
   const user = await stackServerApp.getUser();
   const app = stackServerApp.urls;
-  const userProfile = await getUserDetails(user?.id);
 
   return (
     <nav className="sticky top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
