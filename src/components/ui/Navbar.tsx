@@ -1,10 +1,9 @@
 import { stackServerApp } from "@/stack/server";
+import { UserButton } from "@stackframe/stack";
 import { Home, LogIn, LogOut, Sprout } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "./ModeToggle";
 import { Button } from "./button";
-import { getUserDetails } from "@/actions/user.actions";
-import { UserButton } from "@stackframe/stack";
 
 async function Navbar() {
   const user = await stackServerApp.getUser();
