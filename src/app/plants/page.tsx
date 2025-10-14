@@ -1,5 +1,5 @@
-import InventoryTable from "@/components/ui/InventoryTable";
-import { stackServerApp } from "@/stack/server";
+import InventoryTable from "@/components/InventoryTable";
+import { stackServerApp } from "@/stack";
 import { SignUp } from "@stackframe/stack";
 
 async function Plantpage() {

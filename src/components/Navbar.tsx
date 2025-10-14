@@ -1,9 +1,9 @@
-import { stackServerApp } from "@/stack/server";
+import { stackServerApp } from "@/stack";
 import { UserButton } from "@stackframe/stack";
 import { Home, LogIn, LogOut, Sprout } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "./ModeToggle";
-import { Button } from "./button";
+import { Button } from "./ui/button";
 
 async function Navbar() {
   const user = await stackServerApp.getUser();
@@ -43,7 +43,6 @@ async function Navbar() {
 
             {/* {theme mode} */}
             <ModeToggle />
-
             {user ? (
               <>
                 {/* {Sign Out section} */}

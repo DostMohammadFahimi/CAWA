@@ -1,24 +1,27 @@
 import type { Metadata } from "next";
 import { StackProvider, StackTheme } from "@stackframe/stack";
-import { stackClientApp } from "../stack/client";
-import { Geist, Geist_Mono } from "next/font/google";
+import { stackServerApp } from "../stack";
+import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "@/components/ui/Navbar";
-import { ThemeProvider } from "@/components/ui/theme-provider";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "react-hot-toast";
+import Navbar from "@/components/Navbar";
 
-const geistSans = Geist({
+
+const geistSans = localFont({
+  src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  weight: "100 900",
 });
-
-const geistMono = Geist_Mono({
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: "100 900",
 });
 
 export const metadata: Metadata = {
-  title: "CAWA",
-  description: "This is the crud-app with auth.",
+  title: "NJCAWA",
+  description: "This is the Next.js Crud-app with Auth.",
 };
 
 export default function RootLayout({
@@ -30,18 +33,24 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      ><StackProvider app={stackClientApp}><StackTheme>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
+      >
+        <StackProvider app={stackServerApp}>
+          <StackTheme>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Toaster/>
+              <Navbar />
+              
 
-          {children}
-        </ThemeProvider>{" "}
-      </StackTheme></StackProvider></body>
+              {children}
+            </ThemeProvider>
+          </StackTheme>
+        </StackProvider>
+      </body>
     </html>
   );
 }

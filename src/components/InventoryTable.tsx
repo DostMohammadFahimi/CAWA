@@ -11,61 +11,61 @@ import {
 } from "@/components/ui/table";
 import { Search } from "lucide-react";
 import { useState } from "react";
-import { Combobox } from "./combo-box";
+import { Combobox } from "./ui/combo-box"
 
  const plants = [
   {
     id: "INV001",
-    name: "Paid",
+    name: "Indoor",
     price: "$250.00",
     category: "Indoor",
     stock: "12",
   },
   {
     id: "INV002",
-    name: "Pending",
+    name: "Outdoor",
     price: "$150.00",
     category: "Outdoor",
     stock: "12",
   },
   {
     id: "INV003",
-    name: "Unpaid",
+    name: "Succulent",
     price: "$350.00",
     category: "Succulent",
     stock: "12",
   },
   {
     id: "INV004",
-    name: "Paid",
+    name: "Flowering",
     price: "$450.00",
     category: "Flowering",
     stock: "12",
   },
   {
     id: "INV005",
-    name: "Paid",
+    name: "Herb",
     price: "$550.00",
     category: "Herb",
     stock: "12",
   },
   {
     id: "INV006",
-    name: "Pending",
+    name: "Fern",
     price: "$200.00",
     category: "Fern",
     stock: "12",
   },
   {
     id: "INV007",
-    name: "Unpaid",
+    name: "Tree",
     price: "$300.00",
     category: "Tree",
     stock: "12",
   },
   {
     id: "INV008",
-    name: "Unpaid",
+    name: "Shrub",
     price: "$300.00",
     category: "Shrub",
     stock: "12",
@@ -78,9 +78,10 @@ export default function InventoryTable() {
     <div className="w-full">
       <div className="flex items-center gap-2 py-4">
         <div className="relative max-w-sm w-full">
-          <Input placeholder="Filter plants..." className="pl-10" />
+          <Input placeholder="Filter plants..." className="pl-10"/>
           <Search
             className="absolute h-4 w-4 left-3 top-1/2 transform -translate-y-1/2
+
           "
           />
         </div>
