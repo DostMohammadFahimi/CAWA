@@ -1,5 +1,6 @@
 "use client";
 
+import { getPlants } from "@/actions/plant.action";
 import { Input } from "@/components/ui/input";
 import {
   Table,
@@ -11,9 +12,9 @@ import {
 } from "@/components/ui/table";
 import { Search } from "lucide-react";
 import { useState } from "react";
-import { Combobox } from "./ui/combo-box"
+import { Combobox } from "./ui/combo-box";
 
- const plants = [
+const plants = [
   {
     id: "INV001",
     name: "Indoor",
@@ -72,13 +73,36 @@ import { Combobox } from "./ui/combo-box"
   },
 ];
 
-export default function InventoryTable() {
+
+type Plant = Awaited<ReturnType<typeof getPlants>>
+
+interface InvertoryTableProps{
+  plants:Plant
+}
+
+
+
+export default function InventoryTable({plants}:InvertoryTableProps) {
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  //filter plants by name and category (if selected)
+  const filteredPlants = plants?.userPlants?.filter(
+    (plant) =>
+      plant.name.toLowerCase().includes(searchTerm.toLocaleLowerCase()) &&
+      (selectedCategory === "" || plant.category === selectedCategory)
+  );
+
   return (
     <div className="w-full">
       <div className="flex items-center gap-2 py-4">
         <div className="relative max-w-sm w-full">
-          <Input placeholder="Filter plants..." className="pl-10"/>
+          <Input
+            placeholder="Filter plants..."
+            className="pl-10"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
           <Search
             className="absolute h-4 w-4 left-3 top-1/2 transform -translate-y-1/2
 
@@ -102,7 +126,7 @@ export default function InventoryTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {plants.map((plant) => (
+          {filteredPlants?.map((plant) => (
             <TableRow key={plant.id}>
               <TableCell>{plant.id}</TableCell>
               <TableCell>{plant.name}</TableCell>
