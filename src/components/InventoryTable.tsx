@@ -16,6 +16,7 @@ import { Combobox } from "./ui/combo-box";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "./ui/skeleton";
 import CreateDialog from "./CreateDialog";
+import EditDialog from "./EditDialog";
 
 type Plant = Awaited<ReturnType<typeof getPlants>>;
 
@@ -115,7 +116,7 @@ export default function InventoryTable({ plants }: InvertoryTableProps) {
           value={selectedCategory}
           onChange={(val) => setSelectedCategory(val)}
         />
-      <CreateDialog />
+        <CreateDialog />
       </div>
       <Table>
         <TableHeader>
@@ -143,8 +144,11 @@ export default function InventoryTable({ plants }: InvertoryTableProps) {
                 <TableCell className="font-bold">{plant.stock}</TableCell>
 
                 <TableCell className="text-right">
-                  <div className="flex justify-end space-x-4 ">
-                    <h1>Edit Button</h1>
+                  <div
+                    className="flex justify-end space-x-4 cursor-pointer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <EditDialog plant={plant}/>
                     <h1>Delete Button</h1>
                   </div>
                 </TableCell>
@@ -152,7 +156,7 @@ export default function InventoryTable({ plants }: InvertoryTableProps) {
             );
           })}
         </TableBody>
-      </Table>
+      </Table> 
     </div>
   );
 }
