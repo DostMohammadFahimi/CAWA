@@ -3,13 +3,12 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
 
-import { Badge } from "../../../components/ui/badge";
 import { getPlantById } from "@/actions/plant.action";
+import { Badge } from "../../../components/ui/badge";
 
 
 type Plant = Awaited<ReturnType<typeof getPlantById>>;
@@ -22,13 +21,12 @@ export default function PlantCard({ plant }: PlantCardProps) {
 
     
   if (!plant) {
-    return <div>Plant data is not a
-    vailable.</div>;
+    return <div>Plant data is not available.</div>;
   }
 
 
   return (
-    <Card className="max-w border-gray-800 border-2 bg-gray-950">
+    <Card className="max-w">
       <div className="flex flex-row">
         <div className="basis-2/4">
           <CardHeader>
@@ -36,7 +34,7 @@ export default function PlantCard({ plant }: PlantCardProps) {
             <div className="rounded-lg overflow-hidden">
               <img
                 src={plant.imageUrl}
-                alt="Post content"
+                alt={plant.name}
                 className="w-full h-auto object-cover"
               />
             </div>

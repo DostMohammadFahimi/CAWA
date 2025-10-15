@@ -19,7 +19,7 @@ import { useState } from "react";
 import { Description } from "@radix-ui/react-dialog";
 import { createPlant } from "@/actions/plant.action";
 import toast from "react-hot-toast";
-import ImageUpload from "./ImageUpload";
+// import ImageUpload from "./ImageUpload";
 
 export default function CreateDialog() {
 
@@ -126,7 +126,7 @@ const [formData,setFormData]=useState({
           </div>
 
           {/*Image Upload*/}
-          <div className="py-5">
+          {/* <div className="py-5">
           <ImageUpload
             endpoint="postImage"
             value={formData.imageUrl}
@@ -134,7 +134,7 @@ const [formData,setFormData]=useState({
               handleChange("imageUrl", url);
             }}
           />
-          </div>
+          </div> */}
           
 
           <AlertDialogFooter className="mt-3">

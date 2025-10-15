@@ -38,7 +38,6 @@ export async function getPlantById(id: string) {
   });
 }
 
-
 export async function createPlant(data: Prisma.PlantsCreateInput) {
   console.log("creating plant");
   console.log(data);
