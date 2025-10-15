@@ -13,6 +13,7 @@ import {
 import { Search } from "lucide-react";
 import { useState } from "react";
 import { Combobox } from "./ui/combo-box";
+import { useRouter } from "next/navigation";
 
 const plants = [
   {
@@ -73,16 +74,14 @@ const plants = [
   },
 ];
 
+type Plant = Awaited<ReturnType<typeof getPlants>>;
 
-type Plant = Awaited<ReturnType<typeof getPlants>>
-
-interface InvertoryTableProps{
-  plants:Plant
+interface InvertoryTableProps {
+  plants: Plant;
 }
 
-
-
-export default function InventoryTable({plants}:InvertoryTableProps) {
+export default function InventoryTable({ plants }: InvertoryTableProps) {
+  const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -126,22 +125,28 @@ export default function InventoryTable({plants}:InvertoryTableProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {filteredPlants?.map((plant) => (
-            <TableRow key={plant.id}>
-              <TableCell>{plant.id}</TableCell>
-              <TableCell>{plant.name}</TableCell>
-              <TableCell>{plant.category}</TableCell>
-              <TableCell>{plant.price}</TableCell>
-              <TableCell className="font-bold">{plant.stock}</TableCell>
+          {filteredPlants?.map((plant) => {
+            const slugifiedName = plant.name.toLowerCase().replace(/\s+g/, "-");
+            const slug = `${plant.id}--${slugifiedName}`;
+            const plantUrl = `plants/${slug}`;
 
-              <TableCell className="text-right">
-                <div className="flex justify-end space-x-4 ">
-                  <h1>Edit Button</h1>
-                  <h1>Delete Button</h1>
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
+            return (
+              <TableRow key={plant.id} onClick={() => router.push(plantUrl)}>
+                <TableCell>{plant.id}</TableCell>
+                <TableCell>{plant.name}</TableCell>
+                <TableCell>{plant.category}</TableCell>
+                <TableCell>{plant.price}</TableCell>
+                <TableCell className="font-bold">{plant.stock}</TableCell>
+
+                <TableCell className="text-right">
+                  <div className="flex justify-end space-x-4 ">
+                    <h1>Edit Button</h1>
+                    <h1>Delete Button</h1>
+                  </div>
+                </TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </div>
