@@ -13,7 +13,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Trash, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 
 interface DeleteDialogProps {
@@ -63,7 +63,7 @@ export default function DeleteDialog({ plant }: DeleteDialogProps) {
               type="submit"
               className={buttonVariants({ variant: "destructive" })}
             >
-              <Trash />
+              <Trash2 />
               Confirm Delete
             </AlertDialogAction>
           </AlertDialogFooter>
