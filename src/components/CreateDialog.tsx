@@ -54,7 +54,7 @@ const [formData,setFormData]=useState({
       <AlertDialogTrigger asChild>
         <Button
           variant="default"
-          className="ml-auto flex items-center gap-2"
+          className="ml-auto flex items-center gap-2 cursor-pointer"
           asChild
         >
           <span>
@@ -136,7 +136,7 @@ const [formData,setFormData]=useState({
           </div> */}
           
 
-          <AlertDialogFooter>
+          <AlertDialogFooter className="mt-3">
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction type="submit">Submit</AlertDialogAction>
           </AlertDialogFooter>

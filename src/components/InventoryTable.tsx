@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import { Skeleton } from "./ui/skeleton";
 import CreateDialog from "./CreateDialog";
 import EditDialog from "./EditDialog";
+import DeleteDialog from "./DeleteDialog";
 
 type Plant = Awaited<ReturnType<typeof getPlants>>;
 
@@ -149,7 +150,7 @@ export default function InventoryTable({ plants }: InvertoryTableProps) {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <EditDialog plant={plant}/>
-                    <h1>Delete Button</h1>
+                    <DeleteDialog plant={plant}/>
                   </div>
                 </TableCell>
               </TableRow>
