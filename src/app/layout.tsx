@@ -20,7 +20,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "NJCAWA",
+  title: "CAWA PLANT",
   description: "This is the Next.js Crud-app with Auth.",
 };
 

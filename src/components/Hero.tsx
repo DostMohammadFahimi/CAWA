@@ -19,11 +19,11 @@ const Hero = () => {
             </Link>
           </Badge>
           <h1 className="mt-6 max-w-[17ch] text-4xl md:text-5xl lg:text-[2.75rem] xl:text-[3.25rem] font-semibold leading-[1.2]! tracking-tighter">
-            Customized Shadcn UI Blocks & Components
+            Customized  UI Blocks & Components
           </h1>
           <p className="mt-6 max-w-[60ch] text-lg">
-            Explore a collection of Shadcn UI blocks and components, ready to
-            preview and copy. Streamline your development workflow with
+            Explore a collection of UI blocks and components, ready to
+            preview. Streamline your development workflow with
             easy-to-implement examples.
           </p>
           <div className="mt-12 flex items-center gap-4">
