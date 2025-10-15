@@ -15,6 +15,7 @@ import { useState } from "react";
 import { Combobox } from "./ui/combo-box";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "./ui/skeleton";
+import CreateDialog from "./CreateDialog";
 
 type Plant = Awaited<ReturnType<typeof getPlants>>;
 
@@ -40,7 +41,7 @@ export default function InventoryTable({ plants }: InvertoryTableProps) {
         <div className="flex items-center gap-2 py-4">
           <Skeleton className="h-10 w-full max-w-sm" />
           <Skeleton className="h-10 w-32" />
-          <Skeleton className="h-10 w-32" />
+          <Skeleton className="h-10 w-32 ml-auto flex items-center gap-2" />
         </div>
         <Table>
           <TableHeader>
@@ -114,6 +115,7 @@ export default function InventoryTable({ plants }: InvertoryTableProps) {
           value={selectedCategory}
           onChange={(val) => setSelectedCategory(val)}
         />
+      <CreateDialog />
       </div>
       <Table>
         <TableHeader>

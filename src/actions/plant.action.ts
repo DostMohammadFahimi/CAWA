@@ -38,26 +38,27 @@ export async function getPlantById(id: string) {
   });
 }
 
-// export async function createPlant(data: Prisma.PlantsCreateInput) {
-//   console.log("creating plant");
-//   console.log(data);
-//   try {
-//     const currentUserId = await getUserId();
-//     if (!currentUserId) return;
 
-//     const newPlant = await prisma.plants.create({
-//       data: {
-//         ...data,
-//         userId: currentUserId,
-//       },
-//     });
-//     revalidatePath("/plants");
-//     return newPlant;
-//   } catch (error) {
-//     console.error("Error Creating Plant:", error);
-//     throw error;
-//   }
-// }
+export async function createPlant(data: Prisma.PlantsCreateInput) {
+  console.log("creating plant");
+  console.log(data);
+  try {
+    const currentUserId = await getUserId();
+    if (!currentUserId) return;
+
+    const newPlant = await prisma.plants.create({
+      data: {
+        ...data,
+        userId: currentUserId,
+      },
+    });
+    revalidatePath("/plants");
+    return newPlant;
+  } catch (error) {
+    console.error("Error Creating Plant:", error);
+    throw error;
+  }
+}
 
 // export async function editPlant(
 //   id: string, //identify which plant we are editing
