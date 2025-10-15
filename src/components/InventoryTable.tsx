@@ -14,65 +14,7 @@ import { Search } from "lucide-react";
 import { useState } from "react";
 import { Combobox } from "./ui/combo-box";
 import { useRouter } from "next/navigation";
-
-const plants = [
-  {
-    id: "INV001",
-    name: "Indoor",
-    price: "$250.00",
-    category: "Indoor",
-    stock: "12",
-  },
-  {
-    id: "INV002",
-    name: "Outdoor",
-    price: "$150.00",
-    category: "Outdoor",
-    stock: "12",
-  },
-  {
-    id: "INV003",
-    name: "Succulent",
-    price: "$350.00",
-    category: "Succulent",
-    stock: "12",
-  },
-  {
-    id: "INV004",
-    name: "Flowering",
-    price: "$450.00",
-    category: "Flowering",
-    stock: "12",
-  },
-  {
-    id: "INV005",
-    name: "Herb",
-    price: "$550.00",
-    category: "Herb",
-    stock: "12",
-  },
-  {
-    id: "INV006",
-    name: "Fern",
-    price: "$200.00",
-    category: "Fern",
-    stock: "12",
-  },
-  {
-    id: "INV007",
-    name: "Tree",
-    price: "$300.00",
-    category: "Tree",
-    stock: "12",
-  },
-  {
-    id: "INV008",
-    name: "Shrub",
-    price: "$300.00",
-    category: "Shrub",
-    stock: "12",
-  },
-];
+import { Skeleton } from "./ui/skeleton";
 
 type Plant = Awaited<ReturnType<typeof getPlants>>;
 
@@ -91,6 +33,66 @@ export default function InventoryTable({ plants }: InvertoryTableProps) {
       plant.name.toLowerCase().includes(searchTerm.toLocaleLowerCase()) &&
       (selectedCategory === "" || plant.category === selectedCategory)
   );
+
+  if (!plants) {
+    return (
+      <div className="w-full space-y-4">
+        <div className="flex items-center gap-2 py-4">
+          <Skeleton className="h-10 w-full max-w-sm" />
+          <Skeleton className="h-10 w-32" />
+          <Skeleton className="h-10 w-32" />
+        </div>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>
+                <Skeleton className="w-full h-4" />
+              </TableHead>
+              <TableHead>
+                <Skeleton className="w-full h-4" />
+              </TableHead>
+              <TableHead>
+                <Skeleton className="w-full h-4" />
+              </TableHead>
+              <TableHead>
+                <Skeleton className="w-full h-4" />
+              </TableHead>
+              <TableHead>
+                <Skeleton className="w-full h-4" />
+              </TableHead>
+              <TableHead className="text-right">
+                <Skeleton className="w-full h-4" />
+              </TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {Array.from({ length: 5 }).map((_, i) => (
+              <TableRow key={i}>
+                <TableCell>
+                  <Skeleton className="w-full h-4" />
+                </TableCell>
+                <TableCell>
+                  <Skeleton className="w-full h-4" />
+                </TableCell>
+                <TableCell>
+                  <Skeleton className="w-full h-4" />
+                </TableCell>
+                <TableCell>
+                  <Skeleton className="w-full h-4" />
+                </TableCell>
+                <TableCell>
+                  <Skeleton className="w-full h-4" />
+                </TableCell>
+                <TableCell className="text-right">
+                  <Skeleton className="w-full h-4" />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full">
